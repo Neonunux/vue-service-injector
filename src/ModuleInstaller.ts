@@ -1,14 +1,13 @@
-import { AxiosRequestConfig } from 'axios';
-import { VueConstructor } from 'vue';
-import { ModuleTree as VuexModuleTree } from 'vuex';
 import { NavigationGuard, RouteConfig } from 'vue-router';
 
-import axiosInstance from '../axiosInstance';
-import router from '../router';
-import store from '../store';
+// import { AxiosRequestConfig } from 'axios';
+import { VueConstructor } from 'vue';
+import { ModuleTree as VuexModuleTree } from 'vuex';
+// import axiosInstance from '../axiosInstance';
+import router from './router';
+import store from './store';
 
 export type ModuleInstallerOptions = {
-  networkRequestInterceptors: ((requestConfiguration: AxiosRequestConfig) => AxiosRequestConfig)[];
   portalSources: VueConstructor<Vue>[];
   routes: RouteConfig[];
   routerMiddlewares: NavigationGuard<Vue>[];
@@ -16,7 +15,7 @@ export type ModuleInstallerOptions = {
 };
 
 export default class ModuleInstaller {
-  readonly networkRequestInterceptors: ModuleInstallerOptions['networkRequestInterceptors'];
+  // readonly networkRequestInterceptors: ModuleInstallerOptions['networkRequestInterceptors'];
 
   readonly portalSources: ModuleInstallerOptions['portalSources'];
 
@@ -27,7 +26,7 @@ export default class ModuleInstaller {
   readonly storeModules: ModuleInstallerOptions['storeModules'];
 
   constructor(options: Partial<ModuleInstallerOptions>) {
-    this.networkRequestInterceptors = options.networkRequestInterceptors || [];
+    // this.networkRequestInterceptors = options.networkRequestInterceptors || [];
     this.portalSources = options.portalSources || [];
     this.routes = options.routes || [];
     this.routerMiddlewares = options.routerMiddlewares || [];
@@ -35,10 +34,10 @@ export default class ModuleInstaller {
   }
 
   install() {
-    this.networkRequestInterceptors
-      .forEach((interceptor) => {
-        axiosInstance.interceptors.request.use(interceptor);
-      });
+    // this.networkRequestInterceptors
+    //   .forEach((interceptor) => {
+    //     axiosInstance.interceptors.request.use(interceptor);
+    //   });
 
     // Wait for the application to be ready before mounting the portal sources because portals
     // might depend on other modules to be installed.
